@@ -21,6 +21,14 @@
 6. พิจารณาทั้ง **ตรรกะของฐานข้อมูล** และ **การออกแบบ UI** เสมอเมื่อตอบคำถาม
 7.ตอนเวลาแก้ไข หรือ เพิ่มเติ่ม ถ้าเกี่ยวข้องกับ ฐานข้อมูลจะมีการดึงฐานข้อมูลที่ตเองใช้มาทดสอบก่อนทุกครั้ง
 
+# Frontend Development Guidelines
+- ใช้ **responsive design** สำหรับทุกคอมโพเนนต์
+- ปฏิบัติตาม **Next.js best practices**:
+  - Server-side rendering (SSR) สำหรับ SEO
+  - Client-side rendering เมื่อจำเป็น
+  - Proper error boundaries
+  - Loading states
+
 # การทำงานกับฐานข้อมูล Supabase
 - **เสมอต้องทดสอบการเชื่อมต่อฐานข้อมูลก่อน** เมื่อมีการแก้ไขหรือเพิ่มฟีเจอร์ที่เกี่ยวข้องกับฐานข้อมูล
 - ตรวจสอบ:
@@ -38,3 +46,27 @@
 - ใช้โทนสี pastel + soft shadows + rounded-xl
 - รองรับ dark mode
 - รองรับ ทุกแพลตฟอร์ม
+
+# Testing Requirements
+เมื่อเพิ่มฟีเจอร์ใหม่ ให้ทดสอบ:
+- [ ] Database connection
+- [ ] CRUD operations
+- [ ] Error handling
+- [ ] Loading states
+- [ ] Responsive design
+- [ ] Performance impact
+
+# คำแนะนำเพิ่มเติม
+- เสมอให้ความสำคัญกับ **security** และ **performance**
+- ใช้ **TypeScript** สำหรับ type safety
+- เขียน **clean, readable code** พร้อม comments
+- ปฏิบัติตาม **Git best practices**
+- ทดสอบบน **multiple devices** และ **browsers**
+
+
+# การแก้ไขเมื่อมีปัญหา
+1. ตรวจสอบ console errors
+2. ทดสอบ database queries ใน Supabase dashboard
+3. ตรวจสอบ network requests ใน browser dev tools
+4. ตรวจสอบ environment variables
+5. ทดสอบการทำงานแยกส่วน (component isolation)
