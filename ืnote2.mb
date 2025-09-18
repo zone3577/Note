@@ -1,0 +1,131 @@
+# Copilot Custom Chat Mode - Next.js + Supabase Project
+
+## โปรเจคภาพรวม
+- **Frontend**: Next.js (React framework)
+- **Backend Database**: Supabase
+- **สไตล์**: [ระบุว่าใช้ Tailwind CSS, CSS Modules, หรือ styled-components]
+- **ภาษา**: TypeScript/JavaScript
+
+## หน้าที่ของ AI Assistant
+
+### 1. การทำงานกับฐานข้อมูล Supabase
+- **เสมอต้องทดสอบการเชื่อมต่อฐานข้อมูลก่อน** เมื่อมีการแก้ไขหรือเพิ่มฟีเจอร์ที่เกี่ยวข้องกับฐานข้อมูล
+- ตรวจสอบ:
+  - การเชื่อมต่อ Supabase client
+  - การดึงข้อมูล (SELECT queries)
+  - การเพิ่ม/แก้ไข/ลบข้อมูล (INSERT/UPDATE/DELETE)
+  - RLS (Row Level Security) policies
+  - Table relationships และ foreign keys
+
+### 2. Database Testing Protocol
+เมื่อแก้ไขโค้ดที่เกี่ยวข้องกับฐานข้อมูล ให้ทำตามขั้นตอน:
+
+```javascript
+// 1. ทดสอบการเชื่อมต่อ
+const { data, error } = await supabase.from('table_name').select('*').limit(1);
+
+// 2. ตรวจสอบ error handling
+if (error) {
+  console.error('Database error:', error);
+  // แก้ไขปัญหา
+}
+
+// 3. ทดสอบ CRUD operations ที่เกี่ยวข้อง
+```
+
+### 3. Frontend Development Guidelines
+- ใช้ **responsive design** สำหรับทุกคอมโพเนนต์
+- ปฏิบัติตาม **Next.js best practices**:
+  - Server-side rendering (SSR) สำหรับ SEO
+  - Client-side rendering เมื่อจำเป็น
+  - Proper error boundaries
+  - Loading states
+
+### 4. UI/UX Design Standards
+- **สีหลัก**: [ระบุ color palette ของโปรเจค]
+- **Typography**: [ระบุ font families]
+- **Component Library**: [ระบุถ้าใช้ Material-UI, Chakra UI, etc.]
+- **Responsive Breakpoints**: mobile-first approach
+- **Accessibility**: ปฏิบัติตาม WCAG guidelines
+
+### 5. Code Quality Standards
+```typescript
+// ตัวอย่าง type definitions
+interface DatabaseRow {
+  id: string;
+  created_at: string;
+  // ... other fields
+}
+
+// Error handling pattern
+const handleDatabaseOperation = async () => {
+  try {
+    const { data, error } = await supabaseOperation();
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error('Operation failed:', error);
+    // Handle error appropriately
+  }
+};
+```
+
+### 6. Project Structure ที่คาดหวัง
+```
+/
+├── components/          # Reusable UI components
+├── pages/              # Next.js pages
+├── lib/                # Utility functions และ Supabase client
+├── types/              # TypeScript type definitions
+├── styles/             # CSS/SCSS files
+├── hooks/              # Custom React hooks
+└── utils/              # Helper functions
+```
+
+### 7. Database Schema Information
+[ระบุ tables หลักและ relationships]
+```sql
+-- ตัวอย่าง table structure
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
+
+### 8. Common Patterns ที่ต้องตรวจสอบ
+- **Authentication flow**: ตรวจสอบ user session
+- **Data fetching**: ใช้ SWR หรือ React Query
+- **Form handling**: validation และ error states
+- **Image optimization**: Next.js Image component
+- **Performance**: lazy loading, code splitting
+
+### 9. Testing Requirements
+เมื่อเพิ่มฟีเจอร์ใหม่ ให้ทดสอบ:
+- [ ] Database connection
+- [ ] CRUD operations
+- [ ] Error handling
+- [ ] Loading states
+- [ ] Responsive design
+- [ ] Performance impact
+
+### 10. Environment Variables ที่ต้องระวัง
+```bash
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+```
+
+## คำแนะนำเพิ่มเติม
+- เสมอให้ความสำคัญกับ **security** และ **performance**
+- ใช้ **TypeScript** สำหรับ type safety
+- เขียน **clean, readable code** พร้อม comments
+- ปฏิบัติตาม **Git best practices**
+- ทดสอบบน **multiple devices** และ **browsers**
+
+## การแก้ไขเมื่อมีปัญหา
+1. ตรวจสอบ console errors
+2. ทดสอบ database queries ใน Supabase dashboard
+3. ตรวจสอบ network requests ใน browser dev tools
+4. ตรวจสอบ environment variables
+5. ทดสอบการทำงานแยกส่วน (component isolation)
